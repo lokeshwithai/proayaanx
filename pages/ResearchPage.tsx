@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { MOCK_PAPERS } from '../constants';
-import { FileText, Search, Cpu, PenTool, Download, ChevronRight, BookOpen, Upload, CheckCircle } from 'lucide-react';
-import { generateResearchContent } from '../services/geminiService';
-import { ResearchToolMode } from '../types';
+import { FileText, Search, PenTool, Download, ChevronRight, BookOpen, Upload, CheckCircle } from 'lucide-react';
 
 const ResearchPage: React.FC = () => {
-  const [toolMode, setToolMode] = useState<ResearchToolMode>(ResearchToolMode.BRAINSTORM);
-  const [input, setInput] = useState('');
-  const [output, setOutput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   
   // Submission Form State
@@ -19,15 +13,6 @@ const ResearchPage: React.FC = () => {
     file: null as File | null
   });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success'>('idle');
-
-  const handleGenerate = async () => {
-    if (!input.trim()) return;
-    setIsLoading(true);
-    setOutput('');
-    const result = await generateResearchContent(toolMode, input);
-    setOutput(result);
-    setIsLoading(false);
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -57,10 +42,10 @@ const ResearchPage: React.FC = () => {
   ];
 
   return (
-    <div className="pt-16 min-h-screen bg-paper w-full flex flex-col lg:flex-row">
+    <div className="pt-16 min-h-screen bg-paper w-full flex flex-col">
       
-      {/* Left Panel: Research Archive (Content) */}
-      <div className="w-full lg:w-2/3 border-r border-ink min-h-screen">
+      {/* Main Content: Research Archive */}
+      <div className="w-full min-h-screen">
         <div className="p-8 md:p-16 border-b border-ink bg-white">
           <div className="flex items-center mb-4 space-x-2">
             <div className="w-3 h-3 bg-engineering-orange rounded-full"></div>
@@ -92,7 +77,7 @@ const ResearchPage: React.FC = () => {
         {/* PhD Support Section (Domains) */}
         <div className="p-8 md:p-12 border-b border-ink bg-[#f8f8f6]">
           <h3 className="font-serif text-3xl mb-8">Specialized Domains</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {thesisDomains.map((domain) => (
               <div key={domain.code} className="flex items-start p-4 border border-gray-300 bg-white hover:border-ink transition-colors">
                 <BookOpen size={20} className="text-engineering-orange mr-4 mt-1" />
@@ -237,64 +222,6 @@ const ResearchPage: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Right Panel: Research Assistant Tool (Functional) */}
-      <div className="w-full lg:w-1/3 bg-[#f0f0ed] flex flex-col h-auto lg:h-screen lg:sticky lg:top-16 overflow-y-auto">
-        <div className="p-8 border-b border-gray-300">
-          <div className="flex items-center space-x-2 mb-2">
-            <Cpu size={18} className="text-engineering-orange" />
-            <h2 className="font-mono text-sm font-bold uppercase">AI Research Assistant</h2>
-          </div>
-          <p className="text-xs text-gray-500 font-mono">Powered by Gemini 2.5 Flash</p>
-        </div>
-
-        <div className="p-8 flex-grow flex flex-col">
-          {/* Tool Selector */}
-          <div className="grid grid-cols-3 gap-1px bg-gray-300 border border-gray-300 mb-6">
-            {[ResearchToolMode.BRAINSTORM, ResearchToolMode.SUMMARIZE, ResearchToolMode.PROOFREAD].map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setToolMode(mode)}
-                className={`py-3 px-1 text-[10px] font-mono uppercase tracking-tighter ${
-                  toolMode === mode ? 'bg-white text-ink font-bold shadow-inner' : 'bg-[#e5e5e5] text-gray-500 hover:bg-gray-200'
-                }`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-mono text-xs uppercase mb-2 text-gray-600">
-              {toolMode === ResearchToolMode.BRAINSTORM ? 'Research Topic' : 'Input Text'}
-            </label>
-            <textarea 
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="w-full h-32 bg-white border border-gray-300 p-4 font-mono text-xs focus:outline-none focus:border-ink resize-none placeholder-gray-300"
-              placeholder={toolMode === ResearchToolMode.BRAINSTORM ? "e.g. Image Processing Algorithms..." : "Paste abstract here..."}
-            />
-          </div>
-
-          <button 
-            onClick={handleGenerate}
-            disabled={isLoading || !input}
-            className="w-full bg-ink text-white py-3 font-mono text-xs hover:bg-gray-800 disabled:bg-gray-400 transition-colors mb-8 flex justify-center items-center"
-          >
-            {isLoading ? 'PROCESSING DATA...' : 'EXECUTE'}
-            {!isLoading && <ChevronRight size={14} className="ml-2" />}
-          </button>
-
-          {output && (
-            <div className="flex-grow border-t border-gray-300 pt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-               <span className="block font-mono text-[10px] uppercase text-gray-400 mb-2">Output Stream</span>
-               <div className="font-mono text-xs leading-relaxed text-gray-800 whitespace-pre-line">
-                 {output}
-               </div>
-            </div>
-          )}
         </div>
       </div>
 

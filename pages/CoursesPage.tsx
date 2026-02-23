@@ -37,7 +37,7 @@ const CoursesPage: React.FC = () => {
               <div className="col-span-12 md:col-span-5 flex items-center space-x-6">
                 {/* Thumbnail Image - Visible on Desktop */}
                 <div className="hidden md:block w-16 h-16 overflow-hidden border border-gray-200 group-hover:border-ink transition-colors">
-                   <img src={course.image} alt={course.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                   <img src={course.image} alt={course.title} referrerPolicy="no-referrer" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 </div>
                 
                 <div>
@@ -70,7 +70,7 @@ const CoursesPage: React.FC = () => {
               
               {/* Mobile Image (full width bottom) */}
               <div className="md:hidden col-span-12 mt-2">
-                 <img src={course.image} alt={course.title} className="w-full h-48 object-cover border border-gray-200 grayscale" />
+                 <img src={course.image} alt={course.title} referrerPolicy="no-referrer" className="w-full h-48 object-cover border border-gray-200 grayscale" />
               </div>
             </div>
           ))}

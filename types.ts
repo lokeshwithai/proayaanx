@@ -8,15 +8,6 @@ export interface Course {
   image: string;
 }
 
-export interface Faculty {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  specialization: string;
-  image: string;
-}
-
 export interface Paper {
   id: string;
   title: string;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FACULTY } from '../constants';
 
 const AboutPage: React.FC = () => {
   return (
@@ -18,32 +17,6 @@ const AboutPage: React.FC = () => {
             <p>FOUNDED: 2024</p>
             <p>FOCUS: VLSI TRAINING & PHD RESEARCH</p>
           </div>
-        </div>
-      </div>
-
-      {/* Faculty Grid */}
-      <div className="border-b border-ink">
-        <div className="px-6 md:px-12 py-4 border-b border-gray-300">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500">The Faculty</span>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {FACULTY.map((person, idx) => (
-            <div key={person.id} className={`
-              p-8 border-b border-ink md:border-b-0 
-              ${idx !== FACULTY.length - 1 ? 'md:border-r' : ''} 
-              border-gray-300 hover:bg-white transition-colors
-            `}>
-              <div className="mb-6 grayscale hover:grayscale-0 transition-all duration-500">
-                <img src={person.image} alt={person.name} className="w-full h-64 object-cover object-top border border-gray-200" />
-              </div>
-              <h3 className="font-serif text-2xl mb-1">{person.name}</h3>
-              <p className="font-mono text-xs text-engineering-orange uppercase mb-4">{person.role}</p>
-              <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                {person.bio}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 

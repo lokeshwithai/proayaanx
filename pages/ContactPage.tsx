@@ -4,8 +4,18 @@ import { ArrowRight } from 'lucide-react';
 const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const fullName = formData.get('fullName');
+    const email = formData.get('email');
+    const purpose = formData.get('purpose');
+    const message = formData.get('message');
+
+    const subject = `Inquiry: ${purpose} - ${fullName}`;
+    const body = `Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${message}`;
+    
+    window.location.href = `mailto:hello@proayaanx.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   };
 
@@ -32,7 +42,7 @@ const ContactPage: React.FC = () => {
           </div>
           <div>
             <span className="block text-gray-400 text-xs uppercase mb-1">Phone</span>
-            <p>8501033736</p>
+            <p>+91 8501033736</p>
           </div>
         </div>
       </div>
@@ -51,15 +61,15 @@ const ContactPage: React.FC = () => {
           <form className="w-full space-y-8" onSubmit={handleSubmit}>
             <div className="group">
               <label className="block font-mono text-xs uppercase mb-2 text-gray-500 group-focus-within:text-ink">Full Name</label>
-              <input type="text" required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl" />
+              <input type="text" name="fullName" required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl" />
             </div>
             <div className="group">
               <label className="block font-mono text-xs uppercase mb-2 text-gray-500 group-focus-within:text-ink">Email Address</label>
-              <input type="email" required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl" />
+              <input type="email" name="email" required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl" />
             </div>
             <div className="group">
               <label className="block font-mono text-xs uppercase mb-2 text-gray-500 group-focus-within:text-ink">Purpose</label>
-              <select className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl">
+              <select name="purpose" className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl">
                 <option>Course Admission</option>
                 <option>PhD Thesis Support</option>
                 <option>Research Collaboration</option>
@@ -68,7 +78,7 @@ const ContactPage: React.FC = () => {
             </div>
             <div className="group">
               <label className="block font-mono text-xs uppercase mb-2 text-gray-500 group-focus-within:text-ink">Message</label>
-              <textarea rows={3} required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl resize-none"></textarea>
+              <textarea name="message" rows={3} required className="w-full border-b border-gray-300 py-2 focus:border-ink focus:outline-none bg-transparent transition-colors font-serif text-xl resize-none"></textarea>
             </div>
             
             <button type="submit" className="group w-full bg-ink text-white py-4 flex items-center justify-center hover:bg-engineering-orange transition-colors duration-300 shadow-sharp hover:shadow-sharp-hover transform hover:-translate-y-1">
