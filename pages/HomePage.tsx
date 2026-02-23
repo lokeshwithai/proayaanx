@@ -29,7 +29,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="relative z-10">
               <div className="inline-flex items-center space-x-2 border border-ink px-3 py-1 text-xs font-mono uppercase mb-6 bg-white/50 backdrop-blur-sm">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                <span>Admissions Open: 2024-25</span>
+                <span>Admissions Open: 2026</span>
               </div>
 
               <p className="font-mono text-sm md:text-base text-engineering-orange font-bold uppercase tracking-widest mb-4">
