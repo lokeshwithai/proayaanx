@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProAyaanX | VLSI Research & Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              paper: '#f4f4f0',
+              ink: '#1a1a1a',
+              'engineering-orange': '#ea580c',
+              'circuit-blue': '#2563eb',
+              'subtle-gray': '#e5e5e5',
+            },
+            boxShadow: {
+              'sharp': '4px 4px 0px 0px rgba(0,0,0,1)',
+              'sharp-hover': '6px 6px 0px 0px rgba(0,0,0,1)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #f4f4f0;
+        color: #1a1a1a;
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom Scrollbar for technical feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #e5e5e5;
+        border-left: 1px solid #1a1a1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1a1a1a;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ea580c;
+      }
+      .border-ink {
+        border-color: #1a1a1a;
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
